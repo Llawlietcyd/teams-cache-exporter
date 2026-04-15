@@ -1,0 +1,15 @@
+{
+  "name": "teams-chat-export-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Export the currently open Microsoft Teams web chat from IndexedDB and clean it into JSON, CSV, and Markdown.",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "clean": "node ./scripts/node/clean-export.js",
+    "clean:help": "node ./scripts/node/clean-export.js --help"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teams Cache Exporter</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+      <h1>Teams Cache Exporter</h1>
+      <p class="subtitle">Export the currently open Teams chat from browser cache.</p>
+
+      <label class="toggle">
+        <input id="includeRaw" type="checkbox">
+        <span>Include raw cache dump</span>
+      </label>
+
+      <button id="exportBtn" class="primary">Export current chat</button>
+
+      <section class="panel">
+        <div id="status" class="status">Open a Teams chat, then click export.</div>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+  </html>
