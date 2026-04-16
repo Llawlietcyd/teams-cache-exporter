@@ -63,11 +63,10 @@ Be ready to state clearly:
 - add a changelog
 - test on both Chrome and Edge
 - test with multiple Teams tenants if possible
-- add a simple "Export completed" toast or richer progress UI
+- verify the popup wording matches the final exported file set
 
 ## Optional Product Polish
 
 - configurable output folder behavior is not possible in standard extension APIs, but messaging could be improved
-- add separate toggles for JSON / CSV / Markdown / raw
-- add a "drop system messages" option in the popup
 - add better participant name resolution when cache contains additional profile data
+- add a richer progress state such as "reading cache", "cleaning", and "downloading"

@@ -1,26 +1,26 @@
-# Teams 聊天导出工具箱
+# Teams Cache Exporter
 
-这是一个面向 `Microsoft Teams Web v2` 的小工具集，用来导出**当前打开的聊天**，并把本地缓存里的消息整理成更适合阅读和处理的格式。
+这是一个面向 `Microsoft Teams Web v2` 的小工具，用来导出**当前打开的聊天**，并把浏览器本地缓存里的消息整理成更适合阅读和处理的格式。
 
-它适合以下场景：
+适合这些场景：
 
-- 学校或工作租户没有官方自助导出入口
-- 浏览器插件或页面导出经常不完整
+- 学校或工作账号没有官方自助导出入口
+- 普通插件只能抓到当前页面上已经渲染出来的少量消息
 - 需要把聊天记录整理成 `JSON / CSV / Markdown`
 
-## 功能概览
+## 主要功能
 
-这个工具包含两种使用方式：
-
-1. `浏览器扩展`
-   低门槛。打开当前聊天后，点击扩展按钮即可导出。
-2. `脚本模式`
-   包含浏览器端原始导出脚本和 Node.js 清洗脚本，适合调试和二次开发。
+- 只导出当前打开的 Teams 聊天
+- 直接读取浏览器本地 `IndexedDB` 缓存
+- 扩展里可直接选择导出格式
+- 可选隐藏系统消息
+- 可选附带原始缓存导出
+- 自动生成可读版 `JSON / CSV / Markdown`
 
 ## 目录结构
 
 ```text
-teams-chat-export-toolkit/
+teams-cache-exporter/
   README.md
   README.zh-CN.md
   package.json
@@ -47,36 +47,31 @@ teams-chat-export-toolkit/
 
 ### 1. 加载扩展
 
-在 Chrome 或 Edge 中：
+在 Chrome 或 Edge 里：
 
 1. 打开 `chrome://extensions/` 或 `edge://extensions/`
 2. 开启 `Developer mode`
 3. 点击 `Load unpacked`
 4. 选择：
 
-   `teams-chat-export-toolkit/extension`
+   `teams-cache-exporter/extension`
 
 ### 2. 导出当前聊天
 
 1. 打开 `https://teams.microsoft.com/v2/`
-2. 点进你要导出的聊天
+2. 点进你要导出的那个聊天
 3. 点击浏览器右上角扩展图标
 4. 打开 `Teams Cache Exporter`
-5. 点击 `Export current chat`
+5. 勾选你要的输出格式：
+   - `Cleaned JSON`
+   - `CSV for Excel`
+   - `Markdown transcript`
+6. 可选勾选：
+   - `Hide system messages`
+   - `Include raw cache dump`
+7. 点击 `Export current chat`
 
-可选项：
-
-- `Include raw cache dump`
-  会额外下载原始缓存 JSON，适合调试或做进一步分析
-
-### 3. 生成的文件
-
-扩展会自动下载：
-
-- `*.cleaned.json`
-- `*.cleaned.csv`
-- `*.transcript.md`
-- 可选：`*.raw.json`
+扩展会自动下载你选中的文件。
 
 ## 脚本模式
 
@@ -90,7 +85,7 @@ teams-chat-export-toolkit/
 
 ### Node.js 清洗
 
-安装要求：
+要求：
 
 - Node.js `18+`
 
@@ -108,34 +103,38 @@ npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json" --basename 
 npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json" --drop-system
 ```
 
-## 清洗器做了什么
+## 清洗器会做什么
 
-- 把毫秒级时间戳转成 ISO 和本地时间
+- 把毫秒时间戳转成 ISO 和本地时间
 - 把 Teams 的 HTML 内容转成纯文本
-- 把常见系统消息转成人能读懂的文本
+- 把常见系统消息转成人能直接看懂的文本
 - 提取回复预览
 - 生成参与者摘要和消息类型统计
 - 导出 CSV 方便 Excel 打开
 - 导出 Markdown transcript 方便阅读和分享
 
-## 局限
+## 当前扩展版的体验增强
 
-- 它只能导出**当前浏览器本地缓存里已经有的聊天数据**
-- 如果某些参与者名字没有缓存到，本工具可能仍然显示为 `8:orgid:...`
-- 这不是微软官方导出方案
+- 会记住上次选择的导出选项
+- 再次打开弹窗时会保留上一次的状态结果
+- 如果 Teams 标签页里还没注入脚本，弹窗会自动补注入
+
+## 限制
+
+- 只能导出当前浏览器本地缓存里已经有的数据
+- 某些参与者如果名字没有缓存到，本工具仍可能显示成 `8:orgid:...`
+- 这不是微软官方导出路径
 - 请只在你的学校、公司或组织政策允许的前提下使用
 
-## GitHub 发布建议
+## 仓库建议
 
-- 建议把这个工具目录单独做成一个仓库
 - 不要默认提交个人聊天导出文件
-- 推荐把导出结果放进 `exports/`，并用 `.gitignore` 忽略
+- 推荐把导出结果放进 `exports/` 并通过 `.gitignore` 忽略
+- 如果要上商店，先补齐截图、支持链接和隐私政策页面
 
-## 商店上架建议
+## 商店准备
 
-如果想尝试上 Chrome Web Store / Edge Add-ons，可以先看：
+如果你准备上 Chrome Web Store 或 Edge Add-ons，先看：
 
 - `docs/privacy-policy.md`
 - `docs/store-readiness.md`
-
-这两个文件是为了提前准备上架需要的说明材料。

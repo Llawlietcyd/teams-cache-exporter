@@ -1,23 +1,21 @@
-# Teams Chat Export Toolkit
+# Teams Cache Exporter
 
-Minimal toolkit for exporting the **currently open** Microsoft Teams web chat from the browser cache and converting it into readable files.
+Export the **currently open** Microsoft Teams web chat from browser cache into readable files.
 
 It is designed for Teams Web `v2` when normal export options are unavailable or incomplete.
 
 ## What It Does
 
-1. Run a browser script inside `https://teams.microsoft.com/v2/`
-2. Read the current chat's cached history from Teams `IndexedDB`
-3. Download a raw export JSON for that one conversation
-4. Clean the raw JSON into:
-   - readable JSON
-   - CSV
-   - Markdown transcript
+1. Export the **currently open chat only**
+2. Read cached history from Teams `IndexedDB`
+3. Generate cleaned downloads directly in the browser
+4. Optionally include the raw cache dump for debugging
+5. Optionally hide system messages from the final export
 
 ## Project Layout
 
 ```text
-teams-chat-export-toolkit/
+teams-cache-exporter/
   README.md
   package.json
   LICENSE
@@ -41,7 +39,7 @@ teams-chat-export-toolkit/
 - A chat open in `https://teams.microsoft.com/v2/`
 - Node.js `18+` for the cleaner
 
-## Browser Export
+## Browser Script Export
 
 This exports the **currently open chat only**.
 
@@ -87,14 +85,17 @@ If you want less manual work, load the `extension/` folder as an unpacked extens
 
 1. Open the target Teams chat in the browser
 2. Click the extension icon
-3. Optionally enable `Include raw cache dump`
-4. Click `Export current chat`
+3. Choose which outputs to generate
+4. Optionally enable:
+   - `Hide system messages`
+   - `Include raw cache dump`
+5. Click `Export current chat`
 
 The extension automatically downloads:
 
-- cleaned JSON
-- cleaned CSV
-- Markdown transcript
+- cleaned JSON if selected
+- cleaned CSV if selected
+- Markdown transcript if selected
 - optional raw JSON cache dump
 
 This is the lowest-friction path in the toolkit right now.
@@ -137,6 +138,12 @@ Generated files:
 - Some participant IDs in system messages may remain as `8:orgid:...` if no display name is available in cache.
 - This is not an official Microsoft export path.
 - Use it only where your organization or school policy allows.
+
+## Product Notes
+
+- The popup remembers the last selected export options.
+- The popup will inject the content script into the active Teams tab if needed.
+- Status text is preserved so the user can reopen the popup and still see the previous result summary.
 
 ## Suggested GitHub Packaging
 

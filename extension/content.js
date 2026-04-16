@@ -384,6 +384,21 @@ function buildTranscriptMarkdown(meta, cleanedMessages) {
 }
 
 async function exportCurrentChat(includeRaw) {
+  const legacyIncludeRaw = typeof includeRaw === "boolean" ? includeRaw : null;
+  const options = {
+    includeRaw: legacyIncludeRaw !== null ? legacyIncludeRaw : Boolean(includeRaw?.includeRaw),
+    dropSystem: Boolean(includeRaw?.dropSystem),
+    outputs: {
+      json: includeRaw?.outputs?.json !== false,
+      csv: includeRaw?.outputs?.csv !== false,
+      markdown: includeRaw?.outputs?.markdown !== false,
+    },
+  };
+
+  if (!Object.values(options.outputs).some(Boolean)) {
+    throw new Error("No output format selected.");
+  }
+
   const dbInfo = await findReplychainDbInfo();
   const db = await openDb(dbInfo.name);
 
@@ -419,7 +434,11 @@ async function exportCurrentChat(includeRaw) {
       return String(a.id).localeCompare(String(b.id));
     });
 
-    const summary = buildSummary(cleanedMessages);
+    const allSummary = buildSummary(cleanedMessages);
+    const exportedMessages = options.dropSystem
+      ? cleanedMessages.filter(msg => !msg.system)
+      : cleanedMessages;
+    const exportedSummary = buildSummary(exportedMessages);
     const title = getTitle();
     const dateStr = new Date().toISOString().slice(0, 10);
     const base = safeName(title);
@@ -432,29 +451,41 @@ async function exportCurrentChat(includeRaw) {
       conversation_id: conversationId,
       original_count: deduped.length,
       cleaned_count: cleanedMessages.length,
-      summary,
-      messages: cleanedMessages,
+      exported_count: exportedMessages.length,
+      dropped_system_messages: options.dropSystem ? allSummary.system_message_count : 0,
+      includes_system_messages: !options.dropSystem,
+      summary: exportedSummary,
+      full_summary: allSummary,
+      messages: exportedMessages,
     };
 
-    const files = [
-      {
+    const files = [];
+
+    if (options.outputs.json) {
+      files.push({
         filename: `${base}_${dateStr}.cleaned.json`,
         mimeType: "application/json;charset=utf-8",
         text: JSON.stringify(cleanedPayload, null, 2),
-      },
-      {
+      });
+    }
+
+    if (options.outputs.csv) {
+      files.push({
         filename: `${base}_${dateStr}.cleaned.csv`,
         mimeType: "text/csv;charset=utf-8",
-        text: `${buildCsv(cleanedMessages)}\n`,
-      },
-      {
+        text: `${buildCsv(exportedMessages)}\n`,
+      });
+    }
+
+    if (options.outputs.markdown) {
+      files.push({
         filename: `${base}_${dateStr}.transcript.md`,
         mimeType: "text/markdown;charset=utf-8",
-        text: buildTranscriptMarkdown(cleanedPayload, cleanedMessages),
-      },
-    ];
+        text: buildTranscriptMarkdown(cleanedPayload, exportedMessages),
+      });
+    }
 
-    if (includeRaw) {
+    if (options.includeRaw) {
       const rawPayload = {
         exportedAt: new Date().toISOString(),
         source: "indexeddb-replychains",
@@ -464,9 +495,9 @@ async function exportCurrentChat(includeRaw) {
         conversationId,
         replychainCount: chains.length,
         count: deduped.length,
-        participantCount: summary.participant_count,
-        participants: summary.participants,
-        messageTypeCounts: summary.message_type_counts,
+        participantCount: allSummary.participant_count,
+        participants: allSummary.participants,
+        messageTypeCounts: allSummary.message_type_counts,
         messages: deduped,
         rawReplychains: chains,
       };
@@ -491,8 +522,9 @@ async function exportCurrentChat(includeRaw) {
       ok: true,
       title,
       conversationId,
-      count: cleanedMessages.length,
-      participantCount: summary.participant_count,
+      count: exportedMessages.length,
+      participantCount: exportedSummary.participant_count,
+      systemMessageCount: options.dropSystem ? allSummary.system_message_count : 0,
       files: files.map(file => file.filename),
     };
   } finally {

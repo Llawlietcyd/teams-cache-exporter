@@ -20,12 +20,33 @@ h1 {
   color: #4b5563;
 }
 
+.group {
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid #dbe2f0;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.group-title {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
 .toggle {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   user-select: none;
+}
+
+.toggle:last-child {
+  margin-bottom: 0;
 }
 
 .primary {

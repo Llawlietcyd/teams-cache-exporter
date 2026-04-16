@@ -46,6 +46,8 @@ The user controls:
 
 - which Teams chat is open
 - when an export is triggered
+- which cleaned output formats are generated
+- whether system messages are filtered out
 - whether the raw cache dump is included
 - what happens to downloaded files afterward
 
