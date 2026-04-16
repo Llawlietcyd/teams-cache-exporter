@@ -1,5 +1,7 @@
 # Teams Cache Exporter
 
+[中文说明](./README.zh-CN.md)
+
 Export the **currently open** Microsoft Teams web chat from browser cache into readable files.
 
 It is designed for Teams Web `v2` when normal export options are unavailable or incomplete.
@@ -99,6 +101,8 @@ The extension automatically downloads:
 - optional raw JSON cache dump
 
 This is the lowest-friction path in the toolkit right now.
+
+If the browser UI language is Chinese, the popup UI will automatically switch to Chinese.
 
 ## Clean the Raw Export
 

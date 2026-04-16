@@ -5,9 +5,22 @@ const includeRawEl = document.getElementById("includeRaw");
 const dropSystemEl = document.getElementById("dropSystem");
 const exportBtn = document.getElementById("exportBtn");
 const statusEl = document.getElementById("status");
+const titleEl = document.getElementById("appTitle");
+const subtitleEl = document.getElementById("subtitle");
+const outputGroupTitleEl = document.getElementById("outputGroupTitle");
+const outputJsonLabelEl = document.getElementById("outputJsonLabel");
+const outputCsvLabelEl = document.getElementById("outputCsvLabel");
+const outputMarkdownLabelEl = document.getElementById("outputMarkdownLabel");
+const optionsGroupTitleEl = document.getElementById("optionsGroupTitle");
+const dropSystemLabelEl = document.getElementById("dropSystemLabel");
+const includeRawLabelEl = document.getElementById("includeRawLabel");
 
 function setStatus(text) {
   statusEl.textContent = text;
+}
+
+function t(key, substitutions) {
+  return chrome.i18n.getMessage(key, substitutions) || "";
 }
 
 const DEFAULT_SETTINGS = {
@@ -18,8 +31,23 @@ const DEFAULT_SETTINGS = {
     csv: true,
     markdown: true,
   },
-  lastStatus: "Open a Teams chat, then click export.",
+  lastStatus: "",
 };
+
+function localizeStaticText() {
+  document.documentElement.lang = chrome.i18n.getUILanguage().startsWith("zh") ? "zh-CN" : "en";
+  document.title = t("extName");
+  titleEl.textContent = t("extName");
+  subtitleEl.textContent = t("popupSubtitle");
+  outputGroupTitleEl.textContent = t("outputGroupTitle");
+  outputJsonLabelEl.textContent = t("outputJsonLabel");
+  outputCsvLabelEl.textContent = t("outputCsvLabel");
+  outputMarkdownLabelEl.textContent = t("outputMarkdownLabel");
+  optionsGroupTitleEl.textContent = t("optionsGroupTitle");
+  dropSystemLabelEl.textContent = t("dropSystemLabel");
+  includeRawLabelEl.textContent = t("includeRawLabel");
+  exportBtn.textContent = t("exportButton");
+}
 
 function isTeamsUrl(url) {
   return /^https:\/\/(.+\.)?(teams\.microsoft\.com|teams\.microsoft\.us|teams\.live\.com|cloud\.microsoft)\//i.test(url || "");
@@ -59,7 +87,7 @@ async function loadSettings() {
   outputMarkdownEl.checked = outputs.markdown !== false;
   includeRawEl.checked = Boolean(stored.includeRaw);
   dropSystemEl.checked = Boolean(stored.dropSystem);
-  setStatus(stored.lastStatus || DEFAULT_SETTINGS.lastStatus);
+  setStatus(stored.lastStatus || t("statusReady"));
 }
 
 async function saveSettings() {
@@ -105,30 +133,30 @@ exportBtn.addEventListener("click", async () => {
   const exportOptions = getExportOptions();
 
   if (!hasSelectedOutput(exportOptions)) {
-    await saveStatus("Select at least one output file.");
+    await saveStatus(t("errorSelectOutput"));
     return;
   }
 
   exportBtn.disabled = true;
-  await saveStatus("Exporting current chat...");
+  await saveStatus(t("statusExporting"));
 
   try {
     const tab = await getActiveTab();
     if (!tab?.id || !isTeamsUrl(tab.url)) {
-      throw new Error("Open a Teams web chat first.");
+      throw new Error(t("errorOpenTeamsChat"));
     }
 
     const response = await sendExportRequest(tab.id, exportOptions);
 
     if (!response?.ok) {
-      throw new Error(response?.error || "Export failed.");
+      throw new Error(response?.error || t("errorExportFailed"));
     }
 
     const lines = [
-      `Done: ${response.title || "Current chat"}`,
-      `Messages: ${response.count}`,
-      `Participants: ${response.participantCount}`,
-      response.systemMessageCount ? `System messages hidden: ${response.systemMessageCount}` : "",
+      `${t("statusDonePrefix")} ${response.title || t("currentChatLabel")}`,
+      `${t("statusMessagesPrefix")} ${response.count}`,
+      `${t("statusParticipantsPrefix")} ${response.participantCount}`,
+      response.systemMessageCount ? `${t("statusSystemHiddenPrefix")} ${response.systemMessageCount}` : "",
       "",
       ...response.files.map(name => `- ${name}`),
     ].filter(Boolean);
@@ -140,4 +168,5 @@ exportBtn.addEventListener("click", async () => {
   }
 });
 
+localizeStaticText();
 void loadSettings();

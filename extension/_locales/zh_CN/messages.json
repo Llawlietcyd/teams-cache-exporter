@@ -1,0 +1,65 @@
+{
+  "extName": {
+    "message": "Teams 缓存导出器"
+  },
+  "extDescription": {
+    "message": "从本地缓存导出当前打开的 Teams 网页聊天，并下载清洗后的 JSON、CSV 和 Markdown 文件。"
+  },
+  "popupSubtitle": {
+    "message": "从浏览器缓存导出当前打开的 Teams 聊天。"
+  },
+  "outputGroupTitle": {
+    "message": "导出文件"
+  },
+  "outputJsonLabel": {
+    "message": "清洗后的 JSON"
+  },
+  "outputCsvLabel": {
+    "message": "Excel 用 CSV"
+  },
+  "outputMarkdownLabel": {
+    "message": "Markdown 纪要"
+  },
+  "optionsGroupTitle": {
+    "message": "选项"
+  },
+  "dropSystemLabel": {
+    "message": "隐藏系统消息"
+  },
+  "includeRawLabel": {
+    "message": "附带原始缓存导出"
+  },
+  "exportButton": {
+    "message": "导出当前聊天"
+  },
+  "statusReady": {
+    "message": "先打开一个 Teams 聊天，再点导出。"
+  },
+  "statusExporting": {
+    "message": "正在导出当前聊天..."
+  },
+  "statusDonePrefix": {
+    "message": "完成："
+  },
+  "statusMessagesPrefix": {
+    "message": "消息数："
+  },
+  "statusParticipantsPrefix": {
+    "message": "参与者："
+  },
+  "statusSystemHiddenPrefix": {
+    "message": "已隐藏系统消息："
+  },
+  "currentChatLabel": {
+    "message": "当前聊天"
+  },
+  "errorSelectOutput": {
+    "message": "至少选择一种导出文件。"
+  },
+  "errorOpenTeamsChat": {
+    "message": "请先打开一个 Teams 网页聊天。"
+  },
+  "errorExportFailed": {
+    "message": "导出失败。"
+  }
+}

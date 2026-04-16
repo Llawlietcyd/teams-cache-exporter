@@ -1,0 +1,65 @@
+{
+  "extName": {
+    "message": "Teams Cache Exporter"
+  },
+  "extDescription": {
+    "message": "Export the currently open Teams web chat from local cache and download cleaned JSON, CSV, and Markdown files."
+  },
+  "popupSubtitle": {
+    "message": "Export the currently open Teams chat from browser cache."
+  },
+  "outputGroupTitle": {
+    "message": "Output files"
+  },
+  "outputJsonLabel": {
+    "message": "Cleaned JSON"
+  },
+  "outputCsvLabel": {
+    "message": "CSV for Excel"
+  },
+  "outputMarkdownLabel": {
+    "message": "Markdown transcript"
+  },
+  "optionsGroupTitle": {
+    "message": "Options"
+  },
+  "dropSystemLabel": {
+    "message": "Hide system messages"
+  },
+  "includeRawLabel": {
+    "message": "Include raw cache dump"
+  },
+  "exportButton": {
+    "message": "Export current chat"
+  },
+  "statusReady": {
+    "message": "Open a Teams chat, then click export."
+  },
+  "statusExporting": {
+    "message": "Exporting current chat..."
+  },
+  "statusDonePrefix": {
+    "message": "Done:"
+  },
+  "statusMessagesPrefix": {
+    "message": "Messages:"
+  },
+  "statusParticipantsPrefix": {
+    "message": "Participants:"
+  },
+  "statusSystemHiddenPrefix": {
+    "message": "System messages hidden:"
+  },
+  "currentChatLabel": {
+    "message": "Current chat"
+  },
+  "errorSelectOutput": {
+    "message": "Select at least one output file."
+  },
+  "errorOpenTeamsChat": {
+    "message": "Open a Teams web chat first."
+  },
+  "errorExportFailed": {
+    "message": "Export failed."
+  }
+}

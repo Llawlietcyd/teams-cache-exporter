@@ -1,5 +1,7 @@
 # Teams Cache Exporter
 
+[English README](./README.md)
+
 这是一个面向 `Microsoft Teams Web v2` 的小工具，用来导出**当前打开的聊天**，并把浏览器本地缓存里的消息整理成更适合阅读和处理的格式。
 
 适合这些场景：
@@ -118,6 +120,7 @@ npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json" --drop-syst
 - 会记住上次选择的导出选项
 - 再次打开弹窗时会保留上一次的状态结果
 - 如果 Teams 标签页里还没注入脚本，弹窗会自动补注入
+- 如果浏览器界面语言是中文，扩展弹窗会自动显示中文
 
 ## 限制
 
@@ -138,3 +141,5 @@ npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json" --drop-syst
 
 - `docs/privacy-policy.md`
 - `docs/store-readiness.md`
+- `docs/privacy-policy.zh-CN.md`
+- `docs/store-readiness.zh-CN.md`

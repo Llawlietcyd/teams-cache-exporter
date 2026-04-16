@@ -8,34 +8,34 @@
   </head>
   <body>
     <main class="app">
-      <h1>Teams Cache Exporter</h1>
-      <p class="subtitle">Export the currently open Teams chat from browser cache.</p>
+      <h1 id="appTitle">Teams Cache Exporter</h1>
+      <p id="subtitle" class="subtitle">Export the currently open Teams chat from browser cache.</p>
 
       <section class="group">
-        <div class="group-title">Output files</div>
+        <div id="outputGroupTitle" class="group-title">Output files</div>
         <label class="toggle">
           <input id="outputJson" type="checkbox">
-          <span>Cleaned JSON</span>
+          <span id="outputJsonLabel">Cleaned JSON</span>
         </label>
         <label class="toggle">
           <input id="outputCsv" type="checkbox">
-          <span>CSV for Excel</span>
+          <span id="outputCsvLabel">CSV for Excel</span>
         </label>
         <label class="toggle">
           <input id="outputMarkdown" type="checkbox">
-          <span>Markdown transcript</span>
+          <span id="outputMarkdownLabel">Markdown transcript</span>
         </label>
       </section>
 
       <section class="group">
-        <div class="group-title">Options</div>
+        <div id="optionsGroupTitle" class="group-title">Options</div>
         <label class="toggle">
           <input id="dropSystem" type="checkbox">
-          <span>Hide system messages</span>
+          <span id="dropSystemLabel">Hide system messages</span>
         </label>
         <label class="toggle">
           <input id="includeRaw" type="checkbox">
-          <span>Include raw cache dump</span>
+          <span id="includeRawLabel">Include raw cache dump</span>
         </label>
       </section>
 
