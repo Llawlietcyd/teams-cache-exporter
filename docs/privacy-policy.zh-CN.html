@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>隐私政策 | Teams Cache Exporter</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">隐私政策</div>
+        <h1>Teams Cache Exporter</h1>
+        <p class="lede">Teams Cache Exporter 浏览器扩展的隐私政策页面。</p>
+        <div class="nav">
+          <a href="./index.html">首页</a>
+          <a href="./privacy-policy.html">English</a>
+          <a href="https://github.com/Llawlietcyd/teams-cache-exporter">GitHub</a>
+        </div>
+        <p class="meta">最后更新：2026-04-15</p>
+      </section>
+
+      <section class="card">
+        <h2>概要</h2>
+        <p>Teams Cache Exporter 会在用户自己的浏览器本地处理 Microsoft Teams 聊天数据，用于导出当前打开的聊天。</p>
+        <p>这个扩展的设计目标是让导出的内容始终保留在用户自己的设备上，除非用户自己手动移动或上传这些文件。</p>
+
+        <h2>扩展会访问哪些数据</h2>
+        <p>扩展可能访问：</p>
+        <ul>
+          <li>当前打开的 Microsoft Teams 网页</li>
+          <li>浏览器 IndexedDB 中本地缓存的 Teams 聊天数据</li>
+          <li>当前标签页里可见的 Teams 聊天上下文</li>
+        </ul>
+        <p>它可能生成包含以下内容的导出文件：</p>
+        <ul>
+          <li>消息正文</li>
+          <li>消息时间戳</li>
+          <li>缓存中可用的发送者显示名</li>
+          <li>回复预览</li>
+          <li>成员加入、话题修改、通话等系统事件</li>
+        </ul>
+
+        <h2>扩展不会做什么</h2>
+        <p>扩展不会主动：</p>
+        <ul>
+          <li>把聊天内容发送到任何第三方服务器</li>
+          <li>把导出文件上传到远程后端</li>
+          <li>收集分析数据或遥测</li>
+          <li>出售数据</li>
+          <li>投放广告</li>
+        </ul>
+
+        <h2>本地处理</h2>
+        <p>所有导出处理都设计为在浏览器页面上下文和扩展运行时里本地完成。</p>
+        <p>下载文件通过浏览器下载 API 直接保存在用户自己的设备上。</p>
+
+        <h2>用户可控项</h2>
+        <p>用户可以控制：</p>
+        <ul>
+          <li>当前打开的是哪个 Teams 聊天</li>
+          <li>什么时候触发导出</li>
+          <li>导出哪些清洗后的文件格式</li>
+          <li>是否过滤系统消息</li>
+          <li>是否附带原始缓存导出</li>
+          <li>下载后的文件如何处理</li>
+        </ul>
+
+        <h2>数据保留</h2>
+        <p>扩展本身不会在浏览器下载流程创建的文件之外，额外保留导出的聊天内容。</p>
+        <p>如果用户下载了文件，这些文件会保留在用户自己的设备上，直到用户自行删除或移动它们。</p>
+
+        <h2>安全性</h2>
+        <p>扩展只请求以下必要权限：</p>
+        <ul>
+          <li>访问 Teams 页面</li>
+          <li>读取当前聊天上下文</li>
+          <li>生成文件下载</li>
+          <li>保存少量扩展设置，例如导出选项</li>
+        </ul>
+
+        <h2>使用政策说明</h2>
+        <p>用户需要在导出任何 Teams 内容之前，自行确认符合所在学校、公司、组织以及微软的相关政策。</p>
+
+        <h2>联系方式</h2>
+        <p>如需支持或了解项目详情，请访问 <a href="https://github.com/Llawlietcyd/teams-cache-exporter">GitHub 仓库</a>。正式公开发布前，仓库维护者应当把这里替换为真实的支持邮箱或 issue 链接。</p>
+      </section>
+    </main>
+  </body>
+</html>

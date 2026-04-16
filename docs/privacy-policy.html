@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy | Teams Cache Exporter</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">Privacy Policy</div>
+        <h1>Teams Cache Exporter</h1>
+        <p class="lede">Privacy policy for the browser extension Teams Cache Exporter.</p>
+        <div class="nav">
+          <a href="./index.html">Home</a>
+          <a href="./privacy-policy.zh-CN.html">中文版本</a>
+          <a href="https://github.com/Llawlietcyd/teams-cache-exporter">GitHub</a>
+        </div>
+        <p class="meta">Last updated: 2026-04-15</p>
+      </section>
+
+      <section class="card">
+        <h2>Summary</h2>
+        <p>Teams Cache Exporter processes Microsoft Teams chat data locally in the user's browser in order to export the currently open chat.</p>
+        <p>The extension is designed so that exported content stays on the user's machine unless the user manually moves or uploads the files somewhere else.</p>
+
+        <h2>What Data the Extension Accesses</h2>
+        <p>The extension may access:</p>
+        <ul>
+          <li>the currently open Microsoft Teams web page</li>
+          <li>locally cached Teams chat data stored in the browser's IndexedDB</li>
+          <li>the visible Teams chat currently open in the active tab</li>
+        </ul>
+        <p>It may generate export files containing:</p>
+        <ul>
+          <li>message text</li>
+          <li>message timestamps</li>
+          <li>sender display names when available in cache</li>
+          <li>reply previews</li>
+          <li>system events such as member adds, topic changes, and calls</li>
+        </ul>
+
+        <h2>What the Extension Does Not Do</h2>
+        <p>The extension does not intentionally:</p>
+        <ul>
+          <li>send chat content to any third-party server</li>
+          <li>upload exported files to a remote backend</li>
+          <li>collect analytics or telemetry</li>
+          <li>sell data</li>
+          <li>run ads</li>
+        </ul>
+
+        <h2>Local Processing</h2>
+        <p>All export generation is intended to happen locally inside the browser context and extension runtime.</p>
+        <p>Downloads are created directly on the user's device through the browser download API.</p>
+
+        <h2>User Control</h2>
+        <p>The user controls:</p>
+        <ul>
+          <li>which Teams chat is open</li>
+          <li>when an export is triggered</li>
+          <li>which cleaned output formats are generated</li>
+          <li>whether system messages are filtered out</li>
+          <li>whether the raw cache dump is included</li>
+          <li>what happens to downloaded files afterward</li>
+        </ul>
+
+        <h2>Data Retention</h2>
+        <p>The extension itself is designed not to retain exported chat content outside the files created by the browser download flow.</p>
+        <p>If the user downloads files, those files remain on the user's device until the user deletes or moves them.</p>
+
+        <h2>Security</h2>
+        <p>The extension requests only the permissions needed to:</p>
+        <ul>
+          <li>access Teams pages</li>
+          <li>read the current chat context</li>
+          <li>generate file downloads</li>
+          <li>store small extension settings such as export options</li>
+        </ul>
+
+        <h2>Policy Note</h2>
+        <p>Users are responsible for complying with their organization's, school's, and Microsoft's policies before exporting any Teams content.</p>
+
+        <h2>Contact</h2>
+        <p>For support or project information, visit the <a href="https://github.com/Llawlietcyd/teams-cache-exporter">GitHub repository</a>. Repository maintainers should replace this with a real support email or issue tracker URL before broad public release.</p>
+      </section>
+    </main>
+  </body>
+</html>

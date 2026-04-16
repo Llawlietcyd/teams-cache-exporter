@@ -137,6 +137,16 @@ npm run pack:extension
 dist/teams-cache-exporter-v<version>.zip
 ```
 
+## GitHub Pages
+
+仓库里已经带了 `docs/` 下的静态网页。
+
+你在 GitHub 里把 Pages 设置成 `main` 分支的 `/docs` 目录后，预计可以得到这些链接：
+
+- `https://llawlietcyd.github.io/teams-cache-exporter/`
+- `https://llawlietcyd.github.io/teams-cache-exporter/privacy-policy.html`
+- `https://llawlietcyd.github.io/teams-cache-exporter/privacy-policy.zh-CN.html`
+
 ## 限制
 
 - 只能导出当前浏览器本地缓存里已经有的数据

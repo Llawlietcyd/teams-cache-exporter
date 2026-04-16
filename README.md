@@ -164,6 +164,16 @@ The packaged file will be written to:
 dist/teams-cache-exporter-v<version>.zip
 ```
 
+## GitHub Pages
+
+This repository includes static Pages files under `docs/`.
+
+After enabling GitHub Pages for the `main` branch and `/docs` folder, the expected URLs will look like:
+
+- `https://llawlietcyd.github.io/teams-cache-exporter/`
+- `https://llawlietcyd.github.io/teams-cache-exporter/privacy-policy.html`
+- `https://llawlietcyd.github.io/teams-cache-exporter/privacy-policy.zh-CN.html`
+
 ## Suggested GitHub Packaging
 
 - commit the repository without personal exports
