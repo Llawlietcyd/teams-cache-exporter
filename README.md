@@ -79,7 +79,7 @@ If you want less manual work, load the `extension/` folder as an unpacked extens
 3. Click **Load unpacked**
 4. Select:
 
-   `teams-chat-export-toolkit/extension`
+   `teams-cache-exporter/extension`
 
 ### Use the extension
 
@@ -102,7 +102,7 @@ This is the lowest-friction path in the toolkit right now.
 
 ## Clean the Raw Export
 
-From this toolkit directory:
+From the repository root:
 
 ```powershell
 npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json"
@@ -147,7 +147,7 @@ Generated files:
 
 ## Suggested GitHub Packaging
 
-- commit the toolkit directory
+- commit the repository without personal exports
 - do **not** commit personal chat exports by default
 - keep raw and cleaned exports under an ignored `exports/` folder
 
