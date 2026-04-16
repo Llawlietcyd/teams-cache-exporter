@@ -542,7 +542,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
   (async () => {
     try {
-      const result = await exportCurrentChat(Boolean(message.includeRaw));
+      const result = await exportCurrentChat(message.options ?? Boolean(message.includeRaw));
       sendResponse(result);
     } catch (error) {
       sendResponse({ ok: false, error: error?.message || String(error) });
