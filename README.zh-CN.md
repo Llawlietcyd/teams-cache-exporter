@@ -121,6 +121,21 @@ npm run clean -- --input "..\Stepsafe Tech team_idb_2026-04-15.json" --drop-syst
 - 再次打开弹窗时会保留上一次的状态结果
 - 如果 Teams 标签页里还没注入脚本，弹窗会自动补注入
 - 如果浏览器界面语言是中文，扩展弹窗会自动显示中文
+- 扩展语言跟随浏览器 UI 语言，不跟随 Teams 页面语言
+
+## 打包扩展
+
+在仓库根目录运行：
+
+```powershell
+npm run pack:extension
+```
+
+生成的上传包会放在：
+
+```text
+dist/teams-cache-exporter-v<version>.zip
+```
 
 ## 限制
 

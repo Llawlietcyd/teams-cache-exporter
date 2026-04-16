@@ -148,6 +148,21 @@ Generated files:
 - The popup remembers the last selected export options.
 - The popup will inject the content script into the active Teams tab if needed.
 - Status text is preserved so the user can reopen the popup and still see the previous result summary.
+- Popup language follows the browser UI language through Chrome/Edge extension localization, not the Teams page language.
+
+## Packaging
+
+Build a store upload zip from the repository root:
+
+```powershell
+npm run pack:extension
+```
+
+The packaged file will be written to:
+
+```text
+dist/teams-cache-exporter-v<version>.zip
+```
 
 ## Suggested GitHub Packaging
 

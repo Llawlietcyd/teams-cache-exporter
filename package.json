@@ -7,7 +7,8 @@
   "type": "commonjs",
   "scripts": {
     "clean": "node ./scripts/node/clean-export.js",
-    "clean:help": "node ./scripts/node/clean-export.js --help"
+    "clean:help": "node ./scripts/node/clean-export.js --help",
+    "pack:extension": "node ./scripts/node/package-extension.js"
   },
   "engines": {
     "node": ">=18"
